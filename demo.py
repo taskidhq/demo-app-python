@@ -1,12 +1,14 @@
 from flask import Flask
-from taskid_middleware import taskid_middleware
+
+from taskid import Middleware
+
+# Explicitly load tasks
+import tasks.get_emails
+
 app = Flask(__name__)
 
-app.wsgi_app = taskid_middleware(app.wsgi_app)
-
-@app.route('/roberto')
-def roberto():
-    return 'Roberto'
+# Start the Taskid middleware
+app.wsgi_app = Middleware(app.wsgi_app)
 
 @app.route('/')
 def hello_world():

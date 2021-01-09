@@ -1,5 +1,4 @@
-from task import Task
-from text import TextInput
+from taskid import Task, TextInput
 
 class GetEmails(Task):
     def name():
